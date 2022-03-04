@@ -21,7 +21,7 @@ router.get('/',async function (req,res){
                     name:descarga[i].name.common,
                     img:descarga[i].flags.svg,
                     continent:descarga[i].continents[0], 
-                    // population:c.population
+                    population:c.population
                 },
                 include:Activity
             })
@@ -33,35 +33,42 @@ router.get('/',async function (req,res){
                 }
             }, 
             order:[['id']],
-            attributes: { exclude: ['area','ID','capitalCity','subregion','population'] },
+            attributes: { exclude: ['area','ID','capitalCity','subregion'] },
             include:Activity
         })
         res.send(paises) 
         }    
     }else{
     //traerme la info de la api y guardarla en la DB
-    
-    const descarga=await axios.get('https://restcountries.com/v3/all')
-                        .then((response)=>{return response.data}) 
-                        .catch((err)=>res.status(400).send(err))   
-    if(descarga[0]!==undefined){
-        const crear=await descarga.map((c)=>{
-            Country.findOrCreate({
-                where:{
-                    name:c.name.common,
-                    img:c.flags[0],
-                    continent:c.continents[0],
-                    // population:c.population
-                }      
-            })
-        }) 
-        const paises= await Country.findAll({
-            order:[['id']],
-            attributes: { exclude: ['area','ID','capitalCity','subregion','population'] },
-            include:Activity
-        })
-        res.send(paises) 
-        }    
+    const paises= await Country.findAll({
+        order:[['id']],
+        attributes: { exclude: ['area','ID','capitalCity','subregion'] },
+        include:Activity
+    })
+    if(paises.length>0){res.send(paises)}
+    // else{    
+    // const descarga=await axios.get('https://restcountries.com/v3/all')
+    //                     .then((response)=>{return response.data}) 
+    //                     .catch((err)=>res.status(400).send(err))   
+    // if(descarga[0]!==undefined){
+    //     const crear=await descarga.map((c)=>{
+    //         Country.findOrCreate({
+    //             where:{
+    //                 name:c.name.common,
+    //                 img:c.flags[0],
+    //                 continent:c.continents[0],
+    //                 population:c.population
+    //             }      
+    //         })
+    //     }) 
+    //     const paises= await Country.findAll({
+    //         order:[['id']],
+    //         attributes: { exclude: ['area','ID','capitalCity','subregion'] },
+    //         include:Activity
+    //     })
+    //     res.send(paises) 
+    //     }    
+    //}
     }
 })
 
@@ -73,7 +80,6 @@ router.get('/:idPais',async function (req,res){
         where:{id},
         attributes: ['id','name'],
     });
-    console.log(country)
     if(country){
     const descarga=await axios.get(`https://restcountries.com/v3.1/name/${country.name}`)
                               .then((response)=>{return response.data})

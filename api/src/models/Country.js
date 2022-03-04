@@ -32,13 +32,6 @@ module.exports = (sequelize) => {
     },
     area:{
       type:DataTypes.DOUBLE, 
-      get(){
-        if(this.getDataValue>999999){
-          return `${(this.getDataValue('area')/1000000)+'Km2'}`
-        }else{
-        return `${this.getDataValue('area')+'Km2'}`
-        }
-      }     
     },
     population:{
       type:DataTypes.INTEGER,      
