@@ -1,0 +1,11 @@
+.navBar{
+    background-color: blue;
+    margin-top: -21px;
+    height: 5rem;
+}
+.filtrado{        
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    top: 30%; 
+}

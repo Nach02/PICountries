@@ -1,0 +1,17 @@
+
+.login{
+    display: flex;
+}
+.fondo{    
+    position: absolute;
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+}
+.btn{
+    
+    position: relative;
+    top: 25rem;
+    z-index: 0;
+    left: 85%;
+}

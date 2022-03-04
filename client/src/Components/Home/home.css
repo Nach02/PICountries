@@ -1,0 +1,10 @@
+.paginado{    
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 9px;
+}
+.page{
+    cursor: pointer;
+    display: contents;
+  }
