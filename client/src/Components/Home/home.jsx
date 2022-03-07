@@ -2,6 +2,7 @@ import React,{useEffect,useState} from "react";
 import { Link } from "react-router-dom";
 import Cards from "../Cards/Cards";
 import NavBar from "../NavBar/NavBar";
+import fondo from '../../img/fondo valijas 2.jpg'
 import './home.css';
 import { useSelector,useDispatch } from "react-redux";
 import { set_Pag,filter,get_Countries } from "../../Redux/Actions";
@@ -86,15 +87,16 @@ function Home(){
 
 
     return(
-        <div>
-            <NavBar/>
+        <div style={{height:621+"px"}}>
+            <img className="fondohome" src={fondo}/>
+            <NavBar />
             <div className="paginado">
                 {array.map(c=>(
                     <p key={c} className="page"><u onClick={(e)=>{pag(parseInt(e.target.textContent))}}>{c}</u></p>
                 ))}
 
             </div>            
-            <Cards/>
+            <Cards />
         </div>
     )
 

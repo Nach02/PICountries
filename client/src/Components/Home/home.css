@@ -1,10 +1,22 @@
 .paginado{    
+    position: relative;
+    top: -8rem;
+    color:white;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     margin-bottom: 9px;
+    z-index: 100;
 }
 .page{
     cursor: pointer;
     display: contents;
+    
   }
+.fondohome{
+    position: relative;
+    top:0rem;
+    height: 100%;
+    z-index: 0;
+    width: 100%;
+}

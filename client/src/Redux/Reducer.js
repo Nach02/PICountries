@@ -1,4 +1,4 @@
-import {FILTER, GET_COUNTRIES,GET_DETAILS,SET_PAG} from './Actions'
+import {CLEAR_DETAILS, FILTER, GET_COUNTRIES,GET_DETAILS,SET_PAG} from './Actions'
 const initialState={
     countries:[],
     filter:[],
@@ -19,7 +19,12 @@ function order(filtro,metodo){
 }
 
 const RootReducer=(state=initialState,action)=>{
-    switch(action.type){   
+    switch(action.type){ 
+        case CLEAR_DETAILS:
+            return{
+                ...state,
+                countryDetails:{}
+            }  
         case FILTER:    
             var toAdd=[]
             if(action.payload.search!==""&&action.payload.search!==undefined){

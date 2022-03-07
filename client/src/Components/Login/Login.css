@@ -9,9 +9,8 @@
     width: 100%;
 }
 .btn{
-    
     position: relative;
-    top: 25rem;
-    z-index: 0;
-    left: 85%;
+    top: 0rem;
+    left: 200%;
+    z-index: 2;
 }

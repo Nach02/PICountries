@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import {useDispatch} from 'react-redux';
 import { get_Countries } from "../../Redux/Actions";
 import fondo from '../../img/5fa43d71a111f.jpeg'
+import boton from '../../img/boton.png'
 import './Login.css'
+
 
 
 console.log("login")
@@ -16,7 +18,8 @@ function Login(){
     return(
         <div className="login">
             <img className="fondo"src={fondo}/>
-            <Link className="btn" to='/home'>entrar</Link>
+            <Link  to='/home'>
+                <img className="btn" src={boton}/>entrar</Link>
         </div>
     )
 }

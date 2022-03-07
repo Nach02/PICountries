@@ -46,29 +46,6 @@ router.get('/',async function (req,res){
         include:Activity
     })
     if(paises.length>0){res.send(paises)}
-    // else{    
-    // const descarga=await axios.get('https://restcountries.com/v3/all')
-    //                     .then((response)=>{return response.data}) 
-    //                     .catch((err)=>res.status(400).send(err))   
-    // if(descarga[0]!==undefined){
-    //     const crear=await descarga.map((c)=>{
-    //         Country.findOrCreate({
-    //             where:{
-    //                 name:c.name.common,
-    //                 img:c.flags[0],
-    //                 continent:c.continents[0],
-    //                 population:c.population
-    //             }      
-    //         })
-    //     }) 
-    //     const paises= await Country.findAll({
-    //         order:[['id']],
-    //         attributes: { exclude: ['area','ID','capitalCity','subregion'] },
-    //         include:Activity
-    //     })
-    //     res.send(paises) 
-    //     }    
-    //}
     }
 })
 
@@ -83,10 +60,9 @@ router.get('/:idPais',async function (req,res){
     if(country){
     const descarga=await axios.get(`https://restcountries.com/v3.1/name/${country.name}`)
                               .then((response)=>{return response.data})
-                              .catch((err)=>{return res.status(400).send('error en la base de datos, porfavor reporte este problema con al administración')})
-                              
-    // const descarga=await axios.get(`https://restcountries.com/v3.1/alpha/${country.ID}`)
-    //                           .then((response)=>{return response.data})
+                              .catch((err)=>{  
+                                return res.status(400).send("err")})
+                     
         if(descarga[0]!==undefined){
         if(descarga[0].capital===undefined){cap='N/A'}else{cap=descarga[0].capital[0]}
         if(descarga[0].subregion===undefined){subr='N/A'}else{subr=descarga[0].subregion}
@@ -103,12 +79,9 @@ router.get('/:idPais',async function (req,res){
             include:Activity
         })
         res.send(result)  
-        }else{res.status(404).send('error en la base de datos, porfavor reporte este problema con al administración')}
-    }else{res.status(404).send('el pais buscado no se encuentra en la base de datos, porfavor verifique el ID utilizado o carge un nuevo pais')
-    }
-    
+        }
+    }else{
+        console.log("4")
+        res.status(404).send('el pais buscado no se encuentra en la base de datos, porfavor verifique el ID utilizado o carge un nuevo pais')
+    }    
 })
-// router.get('/?name=',(req,res)=>{
-//     console.log('mostrand0 2')
-//     console.log(req)
-// })

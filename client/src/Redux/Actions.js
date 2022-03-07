@@ -6,6 +6,7 @@ export const POST_ACTIVITY='POST_ACTIVITY'
 export const UPDATE_ALL='UPDATE_ALL'
 export const SET_PAG='SET_PAG'
 export const FILTER='FILTER'
+export const CLEAR_DETAILS='CLEAR_DETAILS'
 
 const URL='http://localhost:3001'
 
@@ -64,6 +65,12 @@ export function set_Pag(list){
     return{
         type:SET_PAG,
         payload:list
+    }
+}
+
+export function clear_Details(){
+    return{
+        type:CLEAR_DETAILS,        
     }
 }
 

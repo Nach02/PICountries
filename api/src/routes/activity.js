@@ -9,16 +9,10 @@ router.get('/',async function(req,res){
         include:Country,
     })
     if(all.length<1){res.status(404).send("no se econtraron actividades en la base de datos")}
-    else{res.send(all)}
-    
+    else{res.send(all)}    
 })
-router.post('/',async function(req,res){
-    // try{
-    //     const crear=await req.body.season.map((c)=>{
-    //         Season.findOrCreate({})
-    //     })
 
-    // }catch{} 
+router.post('/',async function(req,res){    
     try{
     var {name,dificulty,duration,season,countries}=req.body;
     var alpha=/^[a-zA-ZÀ-ÿ\u00f1\u00d10-9]+$/;//como añado la "Ñ"
@@ -50,8 +44,7 @@ router.post('/',async function(req,res){
                         },
                         include:Country
                     })  
-                    res.send(result)
-                    
+                    res.send(result)                    
                 }
             }
         }

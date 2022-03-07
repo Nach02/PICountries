@@ -1,21 +1,24 @@
 import React,{useEffect} from "react";
 import { useSelector,useDispatch } from "react-redux";
-import { get_Details } from "../../Redux/Actions";
-import {Link} from 'react-router-dom'
+import { clear_Details, get_Details } from "../../Redux/Actions";
+import {NavLink,Link} from 'react-router-dom'
+import fondo from '../../img/detalles.png'
+import avion from '../../img/avion.png'
+import './Detalle.css'
 
 
 function Detalle(props){
     const dispatch=useDispatch();
     const state=useSelector((state)=>state)
 
-
+    
     useEffect(() => {
         dispatch(get_Details(props.match.params.id))
+        return dispatch(clear_Details())
     }, []);
 
     const detalles=state.countryDetails
     const [pais]=state.countries.filter(c=>c.id===parseInt(props.match.params.id))
-    console.log(detalles.activities)
     var dificultad=""
     if(detalles.activities&&detalles.activities.length>0){
         switch (detalles.activities[0].dificulty) {
@@ -38,30 +41,39 @@ function Detalle(props){
         }
     }
 
+    var area;
+    if(detalles.area){
+    if(detalles.area>1000000){area= (detalles.area/1000000).toFixed(2).toString().concat("M Km2")}
+    else{area=detalles.area.toString().concat("Km2")}
+    }
     return (
-        <div>
-            <h3>Continent: {pais.continent}</h3>
-            <img src={pais.img}/>
-            <h1>{pais.name}</h1>            
-            <h3>{detalles.ID}</h3>
+        <div className="main">
+            <img className="fo" src={fondo}/>
+            <p className="co">Continent: {pais.continent}</p>
+            <img className="fl" src={pais.img}/>
+            <p className="na">{pais.name}</p>            
+            <p className="ID">{detalles.ID}</p>
+            <div className="activities">
             {detalles.activities?(
             detalles.activities.length<1?(
-                <p>This country has no activities yet, <Link to="/home/form">Create one now!</Link></p>):
+                <p className="actAlert">This country has no activities yet, <Link to="/home/form">Create one now!</Link></p>):
                 (
                     detalles.activities.map(a=>(
-                    <div key={a.name}>
-                        <h2>name={a.name}</h2>
-                        <h2>duration={a.duration}</h2>
-                        <h2>season={a.season}</h2>
-                        <h2>dificulty={dificultad}</h2>
+                    <div className="acividad" key={a.name}>
+                        <h2 style={{height:0+"px"}}>{a.name}</h2>
+                        <h2 style={{height:0+"px"}}>{a.duration}</h2>
+                        <h2 style={{height:0+"px"}}>{a.season}</h2>
+                        <h2 style={{height:0+"px"}}>{dificultad}</h2>
                     </div>
                 ))
                 )
             ):(<></>)}
-            <h3>Area: {detalles.area}</h3>
-            <h2>Capital: {detalles.capitalCity}</h2>
-            <h3>Population: {detalles.population}</h3>
-            <h2>Subregion: {detalles.subregion}</h2>
+            </div>
+            <p className="ar">Area: {area}</p>
+            <p className="ca">Capital: {detalles.capitalCity}</p>
+            <p className="po">Population: {detalles.population}</p>
+            <p className="su">Subregion: {detalles.subregion}</p>
+            <NavLink to='/home'><img className="volverdetalle"src={avion}/></NavLink>
         </div>
     )
 }

@@ -1,0 +1,111 @@
+.main{
+    display: flex;
+}
+.fo{
+    width: 100%;
+    position: relative;
+    height: 39.05rem;
+}
+.co{
+    position: absolute;
+    height: 26px;
+    width: 292px;
+    margin: 0px;
+    top: 30%;
+    left: 33.2%;
+    -webkit-transform: rotate(-13deg);
+    text-align:start;
+}
+.fl{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 10%;
+    left: 53%;
+    display: block;
+    -webkit-transform: rotate(-13deg);
+}
+.na{
+    position: absolute;
+    height: 26px;
+    width: 292px;
+    top: 20%;
+    left: 34%;
+    -webkit-transform: rotate(-13deg);
+    text-align: center;
+}
+.ID{
+    position: absolute;
+    top: 15%;
+    left: 54%;
+    -webkit-transform: rotate(-13deg);
+}
+.ar{
+    position: absolute;
+    top: 34.5%;
+    left: 52%;
+    -webkit-transform: rotate(-13deg);
+    text-align:end;
+}
+.ca{
+    position: absolute;
+    height: 26px;
+    width: 292px;
+    top: 35%;
+    left: 34%;
+    -webkit-transform: rotate(-13deg);
+    text-align:start;
+}
+.po{
+    position: absolute;
+    height: 26px;
+    width: 192px;
+    top: 42%;
+    left: 34.6%;
+    -webkit-transform: rotate(-13deg);
+    text-align:start;
+}
+.su{
+    position: absolute;
+    height: 26px;
+    width: 292px;
+    top: 31.3%;
+    left: 33.5%;
+    -webkit-transform: rotate(-13deg);
+    text-align:start;
+}
+.actAlert{
+    position: absolute;
+    height: 30px;
+    width: 300px;
+    top: 2rem;
+    left: 8rem;
+    font-size: 16px;
+
+}
+.activities{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 22rem;
+    left: 23rem;
+    -webkit-transform: rotate(-13deg);
+    font-size: 0.5vw;
+    flex-wrap: wrap;
+}
+.acividad{
+    background-color: white;
+    border-radius: 15%;
+    margin: 9px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 76px;
+}
+.volverdetalle{
+    position: absolute;
+    height: 74px;
+    width: 116px;
+    top: 30rem;
+    left: 25rem;
+}

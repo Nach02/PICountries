@@ -1,4 +1,6 @@
 .home{    
+    position: relative;
+    top: -41rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
