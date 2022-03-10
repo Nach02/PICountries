@@ -18,7 +18,6 @@ function Form(){
     })
 
     function selectCountry(e){
-        validar()
         if(!select.id.includes(e.target.value)){
             var [x]=state.countries.filter(c=>c.id===parseInt(e.target.value))
             setSelect({
@@ -26,6 +25,7 @@ function Form(){
                 name:[...select.name,x.name]
             })
         }
+        setErrors({...errors,countries:""})
     }    
 
     function validar(e){
@@ -37,7 +37,6 @@ function Form(){
         var alpha=/^[a-zA-ZÀ-ÿ\u00f1\u00d10-9]+$/;
         if(!alpha.test(activity.value)){
             errores.activity="symbol"
-            //setErrors({[e.target.id]:"symbol"})
         }else {if(activity.value===""){errores.activity="name"}}
 
         if(duration.value===""){errores.duration="name"}
@@ -46,7 +45,7 @@ function Form(){
         setErrors(errores)
     }
 
-    function send(){        
+    async function send(){        
         var activity=document.getElementById('activity')        
         var dificulty=document.getElementById('dificulty')
         var duration=document.getElementById('duration')
@@ -55,7 +54,7 @@ function Form(){
         validar()
         if(errors.activity===undefined &&activity.value!==""&&countries.id.length>0
         &&duration.value!==""&&season.value!==""){
-            dispatch(post_Activity({
+            await dispatch(post_Activity({
                 name:activity.value,
                 dificulty:dificulty.value,
                 duration:duration.value,
@@ -111,7 +110,7 @@ function Form(){
                 </div>
                 <div className="countries">
                 <label>Where can I practice it?</label>
-                <select name="countries"onChange={(e)=>selectCountry(e)}>
+                <select name="countries"onChange={async (e)=>selectCountry(e)}>
                     <option value="" defaultValue hidden>Country</option>
                     {state.countries?.map(c=>(
                         <option key={c.name} value={c.id}>{c.name}</option>
