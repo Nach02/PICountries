@@ -10,12 +10,25 @@ import './Form.css'
 
 function Form(){
     const state=useSelector((state)=>state)
+    const [status,setStatus]=useState()
     const dispatch=useDispatch()
     const [errors,setErrors]=useState({});    
     const [select,setSelect]=useState({
         id:[],
         name:[]
     })
+    useEffect(() => {
+        fetch('http://localhost:3001/auth/user',{
+            credentials:'include'
+        })
+        .then((descarga)=>descarga.json())
+        .then((respuesta)=>{
+            if(respuesta.status===false){window.location.href = 'http://localhost:3000'}
+            else{
+                setStatus(respuesta.status)
+            }            
+        })
+    }, []);
 
     function selectCountry(e){
         if(!select.id.includes(e.target.value)){
@@ -65,7 +78,7 @@ function Form(){
             alert("faltan alguna informacion") 
         } 
     }
-
+    if(status===true){
     return(
         <div className="total">
             <img className="fondoNuevo"src={x}/>
@@ -133,7 +146,7 @@ function Form(){
             <button className="enviar" onClick={(e)=>send(e)}>Send</button>
             <NavLink to='/home'><img className="volver"src={avion}/></NavLink>
         </div>
-    )
+    )}else{return <div></div>}
 }
 
 export default Form

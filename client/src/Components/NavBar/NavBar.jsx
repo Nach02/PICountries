@@ -48,6 +48,18 @@ function NavBar(){
         activity=activity.value
         dispatch(filter(search,select,sort,activity))  
     }
+    
+    function logout(){
+        fetch('http://localhost:3001/auth/logout',{
+            credentials:'include'
+        })
+        .then((descarga)=>descarga.json())
+        .then((respuesta)=>{
+            if(respuesta.status===true){window.location.href = 'http://localhost:3000'}
+        })
+        .catch((err)=>console.log(err))
+
+    }
 
     return(
         <div className="navBar">
@@ -77,7 +89,7 @@ function NavBar(){
                     <option value="" defaultValue hidden>Sort</option>
                 </select>
                 <button><NavLink to="/home/form">Add activity</NavLink></button>
-                <button><Link to="/">LogOut</Link></button>
+                <button onClick={e=>logout(e)}>LogOut</button>
             </div>          
             </div>
     )

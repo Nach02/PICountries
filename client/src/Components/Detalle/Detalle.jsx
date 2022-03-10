@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { clear_Details, get_Details } from "../../Redux/Actions";
 import {NavLink,Link} from 'react-router-dom'
@@ -10,10 +10,21 @@ import './Detalle.css'
 function Detalle(props){
     const dispatch=useDispatch();
     const state=useSelector((state)=>state)
+    const [status,setStatus]=useState()
 
     
     useEffect(() => {
         dispatch(get_Details(props.match.params.id))
+        fetch('http://localhost:3001/auth/user',{
+            credentials:'include'
+        })
+        .then((descarga)=>descarga.json())
+        .then((respuesta)=>{
+            if(respuesta.status===false){window.location.href = 'http://localhost:3000'}
+            else{
+                setStatus(respuesta.status)
+            }            
+        })
         return dispatch(clear_Details())
     }, []);
 
@@ -46,6 +57,7 @@ function Detalle(props){
     if(detalles.area>1000000){area= (detalles.area/1000000).toFixed(2).toString().concat("M Km2")}
     else{area=detalles.area.toString().concat("Km2")}
     }
+    if(status===true){
     return (
         <div className="main">
             <img className="fo" src={fondo}/>
@@ -75,7 +87,7 @@ function Detalle(props){
             <p className="su">Subregion: {detalles.subregion}</p>
             <NavLink to='/home'><img className="volverdetalle"src={avion}/></NavLink>
         </div>
-    )
+    )}else{return <div></div>}
 }
 
 export default Detalle

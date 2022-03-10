@@ -14,3 +14,15 @@
     left: 430%;
     z-index: 2;
 }
+.loginForm{
+    z-index: 2;
+    position: absolute;
+    top:18rem;
+    left:80%
+}
+.registerForm{
+    z-index: 2;
+    position: absolute;
+    top:18rem;
+    left:80%
+}
