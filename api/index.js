@@ -35,7 +35,7 @@ conn.sync({ force: true }).then(() => {
           where:{
             name:c.name.common,
             img:c.flags[0],
-            continent:c.continents[0],
+            continent:c.continents[0], 
             population:c.population
           }      
         })

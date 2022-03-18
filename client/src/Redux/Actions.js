@@ -1,4 +1,3 @@
-import { Redirect } from "react-router-dom"
 
 export const GET_COUNTRIES='GET_COUNTRIES'
 export const GET_DETAILS='GET_DETAILS'
@@ -37,9 +36,7 @@ export const post_Activity=function(objeto){
             respuesta.countries.forEach(c => {
                 paises.push(c.name+" ")
             });
-            console.log(paises)
-            console.log(respuesta)
-            alert(`La actividad ${respuesta.name} ahora se encuentra disponible en los paises: ${paises}`)
+            alert(`The activity ${respuesta.name} it's now available in the following countries: ${paises}`)
             dispatch({
                 type:POST_ACTIVITY,
                 payload:respuesta

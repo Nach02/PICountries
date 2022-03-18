@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import { post_Activity } from "../../Redux/Actions";
 import x from '../../img/nuevas.png';
 import avion from '../../img/avion.png';
-import pasaporte from '../../img/pasaporte.png'
 import barras from '../../img/barras.png'
 import './Form.css'
 
@@ -78,10 +77,19 @@ function Form(){
             alert("faltan alguna informacion") 
         } 
     }
+    function eliminar(e){
+        e.preventDefault()
+        var index=select.name.indexOf(e.target.value)
+        select.id.splice(index,1)
+        var filtrado=select.name.filter(c=>{
+            if(c!==e.target.value){return true}})
+        setSelect({...select,name:filtrado})        
+    }
+
     if(status===true){
     return(
         <div className="total">
-            <img className="fondoNuevo"src={x}/>
+            <img alt="fondo"className="fondoNuevo"src={x}/>
             <form className="form">
                 <div className="activity">
                 <label>Activity name</label>
@@ -90,7 +98,7 @@ function Form(){
                 <div className="activiyAlert">
                 {errors.activity?<span className="alert">Activity must have a name without any symbol</span>:<></>}
                 </div>
-                <img className="barras" src={barras}/>
+                <img alt="barras de dificultad"className="barras" src={barras}/>
                 <div className="dificulty">                
                 <label>Dificulty</label>
                 <input id="dificulty" type="range" min="1" max="5"></input>
@@ -135,16 +143,21 @@ function Form(){
                 </div>
                 <div className="selected">
                 {select.id.length>0?(
-                    <ul>
+                    <div>
                     {select.name.map(c=>(
-                        <li key={c}>{c}</li>
+                        <div key={c} style={{display:"flex",alignItems: "center"}}>
+                        <p>
+                            {c}
+                        </p>   
+                        <button value={c} onClick={e=>{eliminar(e)}} style={{margin:10+"px", height:25+"px"}}>x</button>
+                        </div>
                     ))}
-                    </ul>
+                    </div>
                 ):<></>}
                 </div>                
             </form>
             <button className="enviar" onClick={(e)=>send(e)}>Send</button>
-            <NavLink to='/home'><img className="volver"src={avion}/></NavLink>
+            <NavLink to='/home'><img alt="avion"className="volver"src={avion}/></NavLink>
         </div>
     )}else{return <div></div>}
 }

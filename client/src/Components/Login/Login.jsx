@@ -70,14 +70,14 @@ function Login(){
     }
     return(
         <div className="login">
-            <img className="fondo"src={fondo}/>
+            <img alt="mundo con monumentos"className="fondo"src={fondo}/>
             {status!==true?(
                 status==='register'?(
                     <form className="registerForm" onSubmit={e=>postRegister(e)}>
                     <input placeholder="User name" type="text" value={register.name} required onChange={e=>setRegister({...register,name:e.target.value})}></input>
                     <input placeholder="Email" type="email" value={register.email} required onChange={e=>setRegister({...register,email:e.target.value})}></input>
                     <input placeholder="Password" type="password" value={register.password} required onChange={e=>setRegister({...register,password:e.target.value})}></input>
-                    <p onClick={e=>cambio('login')}>Ya tengo una cuenta</p>
+                    <p style={{cursor:"pointer", width:100+"px"}} onClick={e=>cambio('login')}>Already have an account?</p>
                     <p style={{color:"red"}}>{mensaje}</p>
                     <button>Register!</button>
                     </form>                                     
@@ -86,13 +86,13 @@ function Login(){
                     <input placeholder="Email" type="email" value={login.email} required onChange={e=>setLogin({...login,email:e.target.value})}></input>
                     <input placeholder="Password" type="password" value={login.password} required onChange={e=>setLogin({...login,password:e.target.value})}></input>
                     <p style={{color:"red"}}>{mensaje}</p>
-                    <p onClick={e=>cambio('register')}>Todavia no tengo una cuenta</p>
+                    <p style={{cursor:"pointer", width:95+"px"}} onClick={e=>cambio('register')}>Sing Up now</p>
                     <button>Login!</button>
                 </form>
                 )
             ):
             (<Link  to='/home'>
-                <img className="btn" src={boton}/>entrar</Link>
+                <img alt="lets fly"className="btn" src={boton}/>entrar</Link>
             )}
         </div>
     )

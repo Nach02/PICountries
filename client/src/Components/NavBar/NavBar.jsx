@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import './NavBar.css'
 import { useSelector,useDispatch } from "react-redux";
 import { filter } from "../../Redux/Actions";
@@ -63,9 +63,8 @@ function NavBar(){
 
     return(
         <div className="navBar">
-            <h1 className="titulo"></h1>
             <div className="filtrado">
-                <input id="search" type='text' placeholder="busca aca un pais por nombre" onChange={(e)=>handleFilter(e)}></input>
+                <input id="search" type='text' placeholder="Search byname" onChange={(e)=>handleFilter(e)}></input>
                 <select id="select" name="select" onChange={(e)=>handleFilter(e)}>
                     <option value="" defaultValue hidden>Select by Continent</option>
                     {cont?.map(s=>(

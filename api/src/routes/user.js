@@ -24,12 +24,12 @@ router.post('/login',async function(req,res){//localhost:3001/auth/
         const find=await Users.findOne({ 
             where:{email:email}
         })
-        if(!find){res.json({status:false,message:'el email todavia no esta registrado'})}
+        if(!find){res.json({status:false,message:'no user found with the email provided'})}
         else{
             if(find.password===password){
                 req.session.userId=find.id;
                 res.json({status:true,message:'usuario identificado'})
-            }else{res.json({status:false,message:'contraseña incorrecta'})}            
+            }else{res.json({status:false,message:'Wrong password'})}            
         }
     }
     else{res.json({status:false,message:'falta informacion'})}
@@ -41,14 +41,14 @@ router.post('/register',async(req,res)=>{
         const find=await Users.findOne({
             where:{email:email},
         })
-        if(find){res.json({status:false,message:'el mail ya se encuentra asignado a algun usuario'})}
+        if(find){res.json({status:false,message:'the email belong to a register user, please use another one'})}
         else{
            const newUser=await Users.create({
                 name,
                 email,
                 password
             })
-            res.json({status:true,message:`el usuario ${newUser.name} se creo correctamente`})
+            res.json({status:true,message:`user ${newUser.name} has been created`})
         }
     }else{resjson({status:false,message:'falta informacion'})}
 })

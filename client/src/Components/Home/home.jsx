@@ -1,5 +1,4 @@
 import React,{useEffect,useState} from "react";
-import { Link } from "react-router-dom";
 import Cards from "../Cards/Cards";
 import NavBar from "../NavBar/NavBar";
 import fondo from '../../img/fondo valijas 2.jpg'
@@ -43,7 +42,7 @@ function Home(){
     function pag(page=1){
         var list=[]
         var x=(page*pageElements)-pageElements
-        if(page!=1){
+        if(page!==1){
             pageElements=10
         }
         for(let i=x;i<x+pageElements;i++){
@@ -57,7 +56,7 @@ function Home(){
     if(status===true){
     return(        
         <div style={{height:621+"px"}}>
-            <img className="fondohome" src={fondo}/>
+            <img alt="aeropuerto"className="fondohome" src={fondo}/>
             <NavBar />
             <div className="paginado">
                 {array.map(c=>(

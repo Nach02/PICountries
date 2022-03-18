@@ -44,7 +44,7 @@ router.get('/',async function (req,res){
         order:[['id']],
         attributes: { exclude: ['area','ID','capitalCity','subregion'] },
         include:Activity
-    })
+    }) 
     if(paises.length>0){res.send(paises)}
     }
 })

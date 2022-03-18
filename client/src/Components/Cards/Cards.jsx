@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React from "react";
 import OneCard from "../OneCard/OneCard";
 import './Cards.css'
 import { useSelector } from "react-redux";

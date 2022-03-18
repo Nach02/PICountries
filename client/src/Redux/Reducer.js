@@ -35,7 +35,7 @@ const RootReducer=(state=initialState,action)=>{
             if(action.payload.select!==""&&action.payload.select!==undefined){
                 if(action.payload.select!=="All"){
                 toAdd=toAdd.filter(c => c.continent===action.payload.select)
-                }else{toAdd=toAdd}
+                }
             } 
             if(action.payload.activity!==""&&action.payload.activity!==undefined){
                 if(action.payload.activity!=="All"){
@@ -44,14 +44,14 @@ const RootReducer=(state=initialState,action)=>{
                         if(c.activities[0].name===action.payload.activity) return true                        
                     }
                 })
-                }else{toAdd=toAdd}
+                }
             }
             if(action.payload.sort!==""&&action.payload.select!==undefined){
                 if(action.payload.sort!=="All"){
                     toAdd=toAdd.filter(c=>c)                    
                     const [filtro,metodo]=action.payload.sort.split(",")
                     toAdd=toAdd.sort(order(filtro,metodo))
-                }else{ toAdd=toAdd}
+                }//else{ toAdd=toAdd}
             }
             if(toAdd.length<1){
                 toAdd="No country found"

@@ -60,9 +60,9 @@ function Detalle(props){
     if(status===true){
     return (
         <div className="main">
-            <img className="fo" src={fondo}/>
+            <img className="fo" alt ="valija vacia"src={fondo}/>
             <p className="co">Continent: {pais.continent}</p>
-            <img className="fl" src={pais.img}/>
+            <img className="fl" alt="bandera del pais" src={pais.img}/>
             <p className="na">{pais.name}</p>            
             <p className="ID">{detalles.ID}</p>
             <div className="activities">
@@ -85,7 +85,7 @@ function Detalle(props){
             <p className="ca">Capital: {detalles.capitalCity}</p>
             <p className="po">Population: {detalles.population}</p>
             <p className="su">Subregion: {detalles.subregion}</p>
-            <NavLink to='/home'><img className="volverdetalle"src={avion}/></NavLink>
+            <NavLink to='/home'><img alt="avion"className="volverdetalle"src={avion}/></NavLink>
         </div>
     )}else{return <div></div>}
 }
